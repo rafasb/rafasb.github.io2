@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Aprendiendo juntos con Rafael Santisteban 2.0</title>
+	<!-- <link rel="icon" href="img/favicon.ico" type="image/png"> -->
+	<meta name="description" content="Display your portfolio taking advantage of a highly powerful grid."/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">  
+  	<!-- Import font -->
+  	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  	<!-- Style for Bootstrap -->
+  	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">  	
+  	<!-- Styles  & Custom styles -->
+  	<link rel="stylesheet" href="css/styles.css">  	
+  	<link rel="stylesheet" href="css/styles-extendidos.css">
+  	
+  	<!-- Media Boxes CSS files -->
+  	<link rel="stylesheet" href="plugin/components/FontAwesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="plugin/components/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="plugin/css/mediaBoxes.css">
+
+	<!-- Listado de proyectos -->
+	<script src="listado-proyectos.js"></script>
+
+	<!-- jQuery 1.8+ -->
+	<script src="plugin/components/jQuery/jquery-1.11.3.min.js"></script>
+
+<style>
+/* == LETS MODIFY SOME COLORS AND STYLE FOR THE DEMO == */
+
+/* push the text field to the right */
+#search {
+    float: right;
+}
+
+/* Change the style of the text */
+.media-box-text {
+    color: black;
+    line-height: 21px;
+    text-align: justify;
+    font-weight: bold;
+}
+
+.media-box-text2 {
+    color: #6B6B6B;
+    line-height: 21px;
+    text-align: justify;
+}
+
+/* Change the style of the title and tags */
+.media-box-categories {
+    text-align: center;
+    margin: 10px 0px 13px 0px;
+}
+
+.media-box-categories span {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid;
+    padding-bottom: 2px;
+    border-color: #e54e53;
+    color: #e54e53;
+}
+
+.media-box-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 100;
+    margin-bottom: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+/* Remove the white background of the content area */
+.media-box-content {
+    background: transparent;
+}
+
+/* Remove box shadow from the media boxes */
+.media-box-container {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+
+/* Change the style of the date */
+.media-box-date {
+    font-size: 11px;
+    font-style: italic;
+    color: #999;
+    text-align: right;
+}
+
+/* Style of the thumbnail-overlay */
+.thumbnail-overlay {
+    background: transparent;
+}
+
+/* change bootstrap style of the buttons */
+.btn {
+    background-color: #e54e53;
+    color: #fff !important;
+    margin: 5px;
+    border: none !important;
+
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background-color: #E15C61;
+}
+
+/* change style of filter menu */
+.media-boxes-filter>li {
+    margin: 0;
+}
+
+.media-boxes-filter>li:last-child a {
+    border-right: 1px solid #EBEBEB;
+    border-radius: 0 4px 4px 0;
+}
+
+.media-boxes-filter>li:first-child a {
+    border-radius: 4px 0 0 4px;
+}
+
+.media-boxes-filter>li a {
+    border-bottom: 1px solid #EBEBEB;
+    border-left: 1px solid #EBEBEB;
+    border-top: 1px solid #EBEBEB;
+    border-right: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+
+.media-boxes-filter>li a.selected {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.media-boxes-filter>li a:hover {
+    background: #fff;
+    color: #676767;
+}
+
+.media-boxes-load-more-button {
+	display:  none;
+}
+
+.navbar-header .mail {
+	text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: black;
+    line-height: 75px;
+}
+.mail i {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+</style>
+</head>
+<body>
+	
+	<div class="header">
+		<div class="content">
+
+			<!-- Static navbar -->
+			<div class="navbar navbar-default">
+				<div class="container-fluid">
+
+					<!-- menu project name -->
+				  	<div class="navbar-header">
+				    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				      	<span class="sr-only">Toggle navigation</span>
+				      	<span class="icon-bar"></span>
+				      	<span class="icon-bar"></span>
+				      	<span class="icon-bar"></span>
+				    	</button>
+				    	<a class="navbar-brand" href="#"><img class="reverse" src="img/logo-rafa.png" alt="Media Boxes" title="Media Boxes"></a>
+				    	<a class="mail" href="mailto:#"><i class="glyphicon glyphicon-envelope"></i>RAFASB@EJEMPLO.COM</a>
+				  	</div>
+
+				  	<!-- menu items -->
+				  	<div id="navbar" class="navbar-collapse collapse">
+					    <ul class="nav navbar-nav navbar-right">
+					    	<li class="dropdown"><a href="#" class="selected">Inicio</a></li>
+					    	<li class="dropdown">
+				        		<a href="#" class="dropdown-toggle selected-" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desplegable <span class="fa fa-chevron-down"></span></a>
+						        <ul class="dropdown-menu">
+									<li>
+										<!-- Content container to add padding -->
+										<div class="dropdown-menu-content clearfix">
+											<ul class="dropdown-menu-column">
+												<li><a href="#">Ejemplo URL</a></li>
+												<li><a href="#">Ejemplo URL</a></li>
+											</ul>
+											<ul class="dropdown-menu-column popover-with-margin">
+												<li><a href="#">Ejemplo URL</a></li>
+												<li><a href="#">Ejemplo URL</a></li>
+											</ul>
+										</div>
+									</li>
+						        </ul>
+				      		</li>
+					    </ul>
+				  	</div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+    
+		</div>
+	</div>
+	
+	<div class="grid-section">
+
+		<div class="headline">
+			<h2><strong>Aprendiendo juntos con Rafael Santisteban 2.0</strong></h2>
+			<p>
+				Índice de proyectos
+			</p>
+		</div>
+
+		<div class="content grid-container">
+
+		<!--  ================== MEDIA BOXES ================== -->	
+		<div class="filters-container">
+
+			<input type="text" id="search" class="media-boxes-search" placeholder="Buscar por título">
+
+			<ul class="media-boxes-filter" id="filter">
+				<!-- Cargamos el contenido desde un archivo externo con una funcion al final -->
+			</ul>
+		</div>		
+
+		<div id="grid">
+
+<script>
+
+for (proyecto of proyectos) {
+	let etiquetas = proyecto.tags.join(" ");	
+	let etiquetasspan = proyecto.tags.join(", ");
+	document.write(`<!-- -------------------------- TEST BOX MARKUP -------------------------- -->`);
+	document.write(`<div class='media-box ${etiquetas}'>`);
+	document.write(`	<div class='media-box-image'>`);
+	document.write(`		<div data-width='400' data-height='150' data-thumbnail='gallery/${proyecto.img}.jpg'></div>`);
+	document.write(`		<div class='thumbnail-overlay'>`);
+	document.write(`		<a href='${proyecto.url}' class='btn btn-sm btn-default' data-title=''>Ver Proyecto</a>`);
+	document.write(`		</div>`);
+	document.write(`	</div>`);
+	document.write(`	<div class='media-box-content'>`);		
+	document.write(`		<div class='media-box-title'>${proyecto.titulo}</div>`);
+	document.write(`		<div class='media-box-text'>${proyecto.subtitulo} </div>`);
+	document.write(`		<div class='media-box-text2'>${proyecto.explicacion} </div>`);
+	document.write(`		<div class='media-box-categories'><span>${etiquetasspan}</span></div>`);		
+	document.write(`		<div class='media-box-date'>${proyecto.fecha}</div>`);       
+	document.write(`	</div>`);
+	document.write(`</div>`);
+	document.write(`<!-- -------------------------- TEST BOX MARKUP -------------------------- -->`);
+}
+</script>
+
+<!--
+
+        <div class="media-box Nature">
+            <div class="media-box-image">
+                <div data-width="320" data-height="200" data-thumbnail="gallery/thumb-55.jpg"></div>		                
+                <div class="thumbnail-overlay">
+                  	<a href="#" class="mb-open-popup btn btn-sm btn-default" data-src="gallery/img-55.jpg" data-title="Dolor sit amet">
+                  		Ver Proyecto
+                  	</a>
+                  	<a href="#" class="btn btn-sm btn-default">More Details</a>
+                </div>
+            </div>
+            <div class="media-box-content">
+            	<div class="media-box-categories"><span>Nature</span></div>
+                <div class="media-box-title">Dolor sit amet</div>
+                <div class="media-box-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ea commodi perferendis voluptates amet inventore minus quis, illo voluptatibus consequatur.
+                </div>
+                <div class="media-box-date">December 10, 2013</div>
+            </div>
+        </div>	      
+-->			  
+		</div> <!-- #grid -->
+
+		<!--  ================== END MEDIA BOXES ================== -->
+
+		</div> <!-- grid-container -->
+
+	</div>
+
+	<div class="grid-section footer">
+		<div class="content">
+		    © 2022 Aprendiendo juntos <b><a href="#">Rafael Santisteban</a></b> || Basado en Media Boxes Grid de <a>Castlecode</a>, adaptado y rediseñado por <b><a>HarpoPan</a></b>
+		</div>
+	</div>
+
+	<div class="fixed">
+		<div class="to-top">
+			<i class="glyphicon glyphicon-chevron-up"></i>
+		</div>
+	</div>
+
+	<script src="plugin/components/jQueryEasing/jquery.easing.js"></script>
+	<!-- Media Boxes JS files -->
+	<script src="plugin/components/Isotope/jquery.isotope.min.js"></script>
+	
+	<script src="plugin/components/imagesLoaded/jquery.imagesLoaded.min.js"></script>
+	<script src="plugin/components/Transit/jquery.transit.min.js"></script>
+	
+	<script src="plugin/components/Waypoints/waypoints.min.js"></script>
+	<script src="plugin/components/Modernizr/modernizr.custom.min.js"></script>
+	<script src="plugin/components/MagnificPopup/jquery.magnific-popup.min.js"></script> 
+	<script src="plugin/js/jquery.mediaBoxes.dropdown.js"></script>
+	<script src="plugin/js/jquery.mediaBoxes.js"></script>
+
+	<script> 
+		$(function(){
+				$("#filter").load("-etiquetas.html"); 
+		});
+	</script> 
+
+	<script>
+
+	    $('#grid').mediaBoxes({
+	    	filterContainer: '#filter',
+	    	search: '#search',
+	    	overlayEffect: 'reveal-bottom',
+	    	columns: 3,
+	    	boxesToLoadStart: 6,
+	    	boxesToLoad: 6,
+	    	horizontalSpaceBetweenBoxes: 30,
+        	verticalSpaceBetweenBoxes: 30,
+        	LoadingWord: 'Cargandorl...',
+        	loadMoreWord: 'Cargar más',
+        	noMoreEntriesWord: 'No hay mas entradas',
+	    }); 
+
+	</script>
+
+	<!-- Bootstrap JS file -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/functions.js"></script>
+
+</body>
+</html>
